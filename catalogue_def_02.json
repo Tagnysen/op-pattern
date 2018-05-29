@@ -1,0 +1,120 @@
+[
+  {
+    "name": "random_proj",
+    "label": "Random Projections",
+    "description": "Random Projections is an algorithm for unsupervised discovery of time serie motifs.",
+    "family": "Data_Exploration"
+  },
+  {
+    "name": "random_projections",
+    "label": "Random Projections",
+    "description": "Random Projections Python+spark implementation of algorithm for unsupervised discovery of time serie motifs",
+    "algorithm": "random_proj",
+    "entry_point": "ikats.algo.core.pattern.random_proj::main_random_projections",
+    "input": [
+      {
+        "name": "ts_list",
+        "label": "Ts list",
+        "description": "List of timeseries where the motifs are searched.",
+        "type": "ts_list"
+      }
+    ],
+    "parameters": [
+      {
+        "name": "sequences_size",
+        "label": "Sequences size",
+        "description": "The number of points in a sequence. Positive number required.",
+        "type": "number"
+      },
+      {
+        "name": "overlap",
+        "label": "Window overlap",
+        "description": "The overlap of two consecutive sliding windows is expressed in percentage of the window size.",
+        "type": "number",
+        "default_value": 0.8
+      },
+      {
+        "name": "paa",
+        "label": "PAA",
+        "description": "The number of PAAs for each sliding window: also defines the size of words built by SAX.",
+        "type": "number",
+        "default_value": 10
+      },
+      {
+        "name": "alphabet_size",
+        "label": "Alphabet size",
+        "description": "The number of letters used by the SAX algorithm",
+        "type": "number",
+        "default_value": 8
+      },
+      {
+        "name": "normalize_mode",
+        "label": "Norm Mode",
+        "description": "Choose to normalize each time serie (GLOBAL_NORM), or/and each time series sequence (LOCAL_NORM)",
+        "type": "list",
+        "domain_of_values": "[\"NO_NORM\",\"LOCAL_NORM\",\"GLOBAL_NORM\",\"LOCAL_GLOBAL\"]",
+        "default_value": "LOCAL_NORM"
+      },
+      {
+        "name": "normalize_method",
+        "label": "Normalization Method",
+        "description": "Normalize with or without mean, with or without variance",
+        "type": "list",
+        "domain_of_values": "[\"WITH_MEAN\",\"WITH_VARIANCE\",\"MEAN_VARIANCE\"]",
+        "default_value": "MEAN_VARIANCE"
+      },
+      {
+        "name": "linear_filter",
+        "label": "Ignore linear/constant",
+        "description": "Filter linear and constant sequences: such sequences are ignored by the processing. LOW delete sequences which are extremely linear or constant, HIGH delete sequences which look like linear or constant. HIGH delete much more sequences than LOW.",
+        "type": "list",
+        "domain_of_values": "[\"NO_FILTER\",\"LOW\",\"MEDIUM\",\"HIGH\"]",
+        "default_value": "MEDIUM"
+      },
+      {
+        "name": "collision_iterations",
+        "label": "Collision iteration",
+        "description": "Percentage of the maximum of iterations to build the collision matrix, usually greater than 50%",
+        "type": "number",
+        "default_value": 1
+      },
+      {
+        "name": "collision_nb_indexes",
+        "label": "Collision nb indexes",
+        "description": "The number of index selected to build the collision matrix. For this advanced parameter, default value is usually used: 2",
+        "type": "number",
+        "default_value": 2
+      },
+      {
+        "name": "neighborhood_method",
+        "label": "Neighborhood method",
+        "description": "Choose the method to find the motif neighborhood. GLOBAL is faster than ITERATIVE. The version BRUTE_FORCE is more precise, but slower than the other version WITH_COLLISIONS.",
+        "type": "list",
+        "domain_of_values": "[\"ITERATIVE_BRUTE_FORCE\",\"GLOBAL_BRUTE_FORCE\", \"ITERATIVE_WITH_COLLISIONS\",\"GLOBAL_WITH_COLLISIONS\"]",
+        "default_value": "GLOBAL_WITH_COLLISIONS"
+      },
+      {
+        "name": "neighborhood_iterations",
+        "label": "Neighborhood iterations",
+        "description": "Give the number of iterations to do the motif neighborhood search",
+        "type": "number",
+        "default_value": 10
+      },
+      {
+        "name": "neighborhood_radius",
+        "label": "Neighborhood radius",
+        "description": "Give the radius of motif neighborhood.",
+        "type": "number",
+        "default_value": 1.5
+      }
+    ],
+     "outputs": [
+      {
+        "name": "result",
+        "label": "Patterns",
+        "description": "Random Projections algorithm result is the group of patterns.",
+        "type": "pattern_groups"
+      }
+    ]
+  }
+]
