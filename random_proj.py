@@ -22,9 +22,9 @@ from collections import defaultdict
 import numpy as np
 from scipy.special import binom
 
-from ikats.algo.core.pattern.collision import final_collision_matrix, SparseMatrix, equation9
-from ikats.algo.core.pattern.recognition import OPT_USING_BRUTE_FORCE, OPT_USING_COLLISIONS, recognition
-from ikats.algo.core.sax.sliding_sax import sliding_windows, run_sax_on_sequences
+from ikats.algo.op-pattern.collision import final_collision_matrix, SparseMatrix, equation9
+from ikats.algo.op-pattern.recognition import OPT_USING_BRUTE_FORCE, OPT_USING_COLLISIONS, recognition
+from ikats.algo.op-sax.sliding_sax import sliding_windows, run_sax_on_sequences
 from ikats.core.library.exception import IkatsException
 from ikats.core.library.spark import ScManager
 
