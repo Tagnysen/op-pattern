@@ -26,7 +26,7 @@ from numpy import array as np_array
 from numpy import concatenate as np_concatenate
 from numpy import empty as np_empty_array
 from scipy.spatial import distance as sci_distance
-from ikats.algo.op-pattern.normalize import scale as func_scale
+from ikats.algo.pattern.normalize import scale as func_scale
 from fastdtw import fastdtw, dtw
 
 from ikats.core.library.exception import IkatsException
