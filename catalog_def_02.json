@@ -10,7 +10,7 @@
     "label": "Random Projections",
     "description": "Random Projections Python+spark implementation of algorithm for unsupervised discovery of time serie motifs",
     "algorithm": "random_proj",
-    "entry_point": "ikats.algo.core.pattern.random_proj::main_random_projections",
+    "entry_point": "op-pattern.random_proj::main_random_projections",
     "input": [
       {
         "name": "ts_list",
