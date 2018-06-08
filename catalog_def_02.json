@@ -14,7 +14,7 @@
     "input": [
       {
         "name": "ts_list",
-        "label": "Ts list",
+        "label": "TS list",
         "description": "List of timeseries where the motifs are searched.",
         "type": "ts_list"
       }

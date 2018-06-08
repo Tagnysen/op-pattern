@@ -18,7 +18,7 @@
     "inputs": [
       {
         "name": "search_target",
-        "label": "Dataset target",
+        "label": "DSname",
         "description": "The search_target: defines the searching area. Dataset name,",
         "type": "ds_name"
       }
@@ -71,7 +71,7 @@
     "outputs": [
       {
         "name": "result",
-        "label": "Matched",
+        "label": "Patterns",
         "description": "Pattern-matching result, grouping the best scores and intervals",
         "type": "pattern"
       }
