@@ -24,10 +24,10 @@ import numpy as np
 from numpy.random import normal, exponential
 from scipy.special import binom
 
-from ikats.algo.core.pattern.collision import LOGGER as COLL_LOGGER
-from ikats.algo.core.pattern.recognition import LOGGER as RECOG_LOGGER
-from ikats.algo.core.sax.sliding_sax import LOGGER as SAX_LOGGER
-from ikats.algo.core.pattern.random_proj import LOGGER, random_projections, regex_from_pattern_results, \
+from ikats.algo.pattern.collision import LOGGER as COLL_LOGGER
+from ikats.algo.pattern.recognition import LOGGER as RECOG_LOGGER
+from ikats.algo.sax.sliding_sax import LOGGER as SAX_LOGGER
+from ikats.algo.pattern.random_proj import LOGGER, random_projections, regex_from_pattern_results, \
     EMPTY_REGEX_MESSAGE, ConfigSax, ConfigCollision, ConfigRecognition
 
 LOGGER = logging.getLogger(__name__)

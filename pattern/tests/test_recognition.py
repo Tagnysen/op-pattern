@@ -16,10 +16,10 @@ limitations under the License.
 """
 import unittest
 import numpy as np
-from ikats.algo.core.sax.sliding_sax import SaxResult
-from ikats.algo.core.pattern.random_proj import NeighborhoodSearch, ConfigRecognition
-from ikats.algo.core.pattern.collision import SparseMatrix
-from ikats.algo.core.pattern.recognition import OPT_USING_BRUTE_FORCE, OPT_USING_COLLISIONS, \
+from ikats.algo.sax.sliding_sax import SaxResult
+from ikats.algo.pattern.random_proj import NeighborhoodSearch, ConfigRecognition
+from ikats.algo.pattern.collision import SparseMatrix
+from ikats.algo.pattern.recognition import OPT_USING_BRUTE_FORCE, OPT_USING_COLLISIONS, \
     _start_alphabet, _get_mindist
 from ikats.core.library.spark import ScManager
 

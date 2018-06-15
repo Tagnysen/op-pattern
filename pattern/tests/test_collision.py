@@ -19,8 +19,8 @@ import unittest
 import numpy as np
 from scipy.special import binom
 
-from ikats.algo.core.pattern.collision import final_collision_matrix, SparseMatrix
-from ikats.algo.core.sax.sliding_sax import SaxResult
+from ikats.algo.pattern.collision import final_collision_matrix, SparseMatrix
+from ikats.algo.sax.sliding_sax import SaxResult
 from ikats.core.library.spark import ScManager
 
 

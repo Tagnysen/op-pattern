@@ -14,11 +14,11 @@
     "name": "TS_Pattern_Matching",
     "description": "Apply the spark-distributed pattern-matching algorithm: this algorithm searches the TS pattern defined by fid_pattern argument into the TS dataset specified by search_target. Current version 1, the target is retricted to the first TS of the dataset.",
     "algorithm": "Search TS Pattern",
-    "entry_point": "ikats.algo.core.pattern.dtw_match::find_pattern_by_fid",
+    "entry_point": "op-pattern.dtw_match::find_pattern_by_fid",
     "inputs": [
       {
         "name": "search_target",
-        "label": "Dataset target",
+        "label": "DSname",
         "description": "The search_target: defines the searching area. Dataset name,",
         "type": "ds_name"
       }
@@ -71,7 +71,7 @@
     "outputs": [
       {
         "name": "result",
-        "label": "Matched",
+        "label": "Patterns",
         "description": "Pattern-matching result, grouping the best scores and intervals",
         "type": "pattern"
       }
