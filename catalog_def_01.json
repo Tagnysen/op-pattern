@@ -1,80 +1,67 @@
-[
-  {
-    "name": "Data_Exploration",
-    "description": "Functions exploring the data: searches, highlights some element, ...",
-    "label": "Data Exploration"
-  },
-  {
-    "name": "Search_TS_Pattern",
-    "description": "Search a pattern in a TS selection. The pattern is defined as a TS selection.",
-    "label": "Search TS Pattern",
-    "family": "Data_Exploration"
-  },
-  {
-    "name": "TS_Pattern_Matching",
-    "description": "Apply the spark-distributed pattern-matching algorithm: this algorithm searches the TS pattern defined by fid_pattern argument into the TS dataset specified by search_target. Current version 1, the target is retricted to the first TS of the dataset.",
-    "algorithm": "Search TS Pattern",
-    "entry_point": "op-pattern.dtw_match::find_pattern_by_fid",
-    "inputs": [
-      {
-        "name": "search_target",
-        "label": "DSname",
-        "description": "The search_target: defines the searching area. Dataset name,",
-        "type": "ds_name"
-      }
-    ],
-    "parameters": [
-      {
-        "name": "fid_pattern",
-        "description": "The functional identifier of the pattern: pattern is a TS selection",
-        "type": "text",
-        "label": "Pattern"
-      },
-      {
-        "name": "rate_sliding",
-        "description": "The computed translation of search window: expressed as a percentage of the pattern size (number of points): 1.0 is coding 100%",
-        "type": "number",
-        "label": "Rate sliding",
-        "default_value": 0.5
-      },
-      {
-        "name": "rate_size_window",
-        "description": "The maximal length of search window, important for DTW and FASTDTW distances: expressed as a percentage of pattern size (number of points): 1.0 is coding 100% (Not applicable for MANHATTAN distance)",
-        "type": "number",
-        "label": "Rate size",
-        "default_value": 1.75
-      },
-      {
-        "name": "distance",
-        "description": "The name of the metric used for scoring: 'DTW' 'FAST_DTW' or 'MANHATTAN'",
-        "type": "text",
-        "domain": "['FAST_DTW', 'DTW', 'MANHATTAN']",
-        "label": "Metric",
-        "default_value": "FAST_DTW"
-      },
-      {
-        "name": "scores_limitation",
-        "description": "The demanded number of first best scores",
-        "type": "number",
-        "label": "Scores limit",
-        "default_value": 10
-      },
-      {
-        "name": "normalize_mode",
-        "description": "The demanded normalizing mode applied before comparing the pattern to the local target area. Available in current version: 'NO_NORM' disables the normalizing pre-processing, or 'MEAN_VARIANCE' sets mean to zero and scales std-deviation to 1 -when possible-",
-        "type": "text",
-        "label": "Normalize mode",
-        "domain": "['NO_NORM', 'MEAN_VARIANCE']",
-        "default_value": "MEAN_VARIANCE"
-      }
-    ],
-    "outputs": [
-      {
-        "name": "result",
-        "label": "Patterns",
-        "description": "Pattern-matching result, grouping the best scores and intervals",
-        "type": "pattern"
-      }
-    ]
-  }
-]
+{
+  "name": "TS_Pattern_Matching",
+  "description": "Apply the spark-distributed pattern-matching algorithm: this algorithm searches the TS pattern defined by fid_pattern argument into the TS dataset specified by search_target. Current version 1, the target is retricted to the first TS of the dataset.",
+  "family": "Data_Exploration",
+  "entry_point": "op-pattern.dtw_match::find_pattern_by_fid",
+  "inputs": [
+    {
+      "name": "search_target",
+      "label": "DSname",
+      "description": "The search_target: defines the searching area. Dataset name,",
+      "type": "ds_name"
+    }
+  ],
+  "parameters": [
+    {
+      "name": "fid_pattern",
+      "description": "The functional identifier of the pattern: pattern is a TS selection",
+      "type": "text",
+      "label": "Pattern"
+    },
+    {
+      "name": "rate_sliding",
+      "description": "The computed translation of search window: expressed as a percentage of the pattern size (number of points): 1.0 is coding 100%",
+      "type": "number",
+      "label": "Rate sliding",
+      "default_value": 0.5
+    },
+    {
+      "name": "rate_size_window",
+      "description": "The maximal length of search window, important for DTW and FASTDTW distances: expressed as a percentage of pattern size (number of points): 1.0 is coding 100% (Not applicable for MANHATTAN distance)",
+      "type": "number",
+      "label": "Rate size",
+      "default_value": 1.75
+    },
+    {
+      "name": "distance",
+      "description": "The name of the metric used for scoring: 'DTW' 'FAST_DTW' or 'MANHATTAN'",
+      "type": "text",
+      "domain": "['FAST_DTW', 'DTW', 'MANHATTAN']",
+      "label": "Metric",
+      "default_value": "FAST_DTW"
+    },
+    {
+      "name": "scores_limitation",
+      "description": "The demanded number of first best scores",
+      "type": "number",
+      "label": "Scores limit",
+      "default_value": 10
+    },
+    {
+      "name": "normalize_mode",
+      "description": "The demanded normalizing mode applied before comparing the pattern to the local target area. Available in current version: 'NO_NORM' disables the normalizing pre-processing, or 'MEAN_VARIANCE' sets mean to zero and scales std-deviation to 1 -when possible-",
+      "type": "text",
+      "label": "Normalize mode",
+      "domain": "['NO_NORM', 'MEAN_VARIANCE']",
+      "default_value": "MEAN_VARIANCE"
+    }
+  ],
+  "outputs": [
+    {
+      "name": "result",
+      "label": "Patterns",
+      "description": "Pattern-matching result, grouping the best scores and intervals",
+      "type": "pattern"
+    }
+  ]
+}
