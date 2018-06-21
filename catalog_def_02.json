@@ -45,7 +45,7 @@
       "label": "Norm Mode",
       "description": "Choose to normalize each time serie (GLOBAL_NORM), or/and each time series sequence (LOCAL_NORM)",
       "type": "list",
-      "domain_of_values": "[\"NO_NORM\",\"LOCAL_NORM\",\"GLOBAL_NORM\",\"LOCAL_GLOBAL\"]",
+      "domain": "['NO_NORM','LOCAL_NORM','GLOBAL_NORM','LOCAL_GLOBAL']",
       "default_value": "LOCAL_NORM"
     },
     {
@@ -53,7 +53,7 @@
       "label": "Normalization Method",
       "description": "Normalize with or without mean, with or without variance",
       "type": "list",
-      "domain_of_values": "[\"WITH_MEAN\",\"WITH_VARIANCE\",\"MEAN_VARIANCE\"]",
+      "domain": "['WITH_MEAN','WITH_VARIANCE','MEAN_VARIANCE']",
       "default_value": "MEAN_VARIANCE"
     },
     {
@@ -61,7 +61,7 @@
       "label": "Ignore linear/constant",
       "description": "Filter linear and constant sequences: such sequences are ignored by the processing. LOW delete sequences which are extremely linear or constant, HIGH delete sequences which look like linear or constant. HIGH delete much more sequences than LOW.",
       "type": "list",
-      "domain_of_values": "[\"NO_FILTER\",\"LOW\",\"MEDIUM\",\"HIGH\"]",
+      "domain": "['NO_FILTER','LOW','MEDIUM','HIGH']",
       "default_value": "MEDIUM"
     },
     {
@@ -83,7 +83,7 @@
       "label": "Neighborhood method",
       "description": "Choose the method to find the motif neighborhood. GLOBAL is faster than ITERATIVE. The version BRUTE_FORCE is more precise, but slower than the other version WITH_COLLISIONS.",
       "type": "list",
-      "domain_of_values": "[\"ITERATIVE_BRUTE_FORCE\",\"GLOBAL_BRUTE_FORCE\", \"ITERATIVE_WITH_COLLISIONS\",\"GLOBAL_WITH_COLLISIONS\"]",
+      "domain": "['ITERATIVE_BRUTE_FORCE','GLOBAL_BRUTE_FORCE', 'ITERATIVE_WITH_COLLISIONS','GLOBAL_WITH_COLLISIONS']",
       "default_value": "GLOBAL_WITH_COLLISIONS"
     },
     {
