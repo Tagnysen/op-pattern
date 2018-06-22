@@ -1,8 +1,8 @@
 {
-  "name": "TS_Pattern_Matching",
+  "name": "ts_pattern_matching",
   "description": "Apply the spark-distributed pattern-matching algorithm: this algorithm searches the TS pattern defined by fid_pattern argument into the TS dataset specified by search_target. Current version 1, the target is retricted to the first TS of the dataset.",
   "family": "Data_Exploration",
-  "entry_point": "op-pattern.dtw_match::find_pattern_by_fid",
+  "entry_point": "pattern.dtw_match::find_pattern_by_fid",
   "inputs": [
     {
       "name": "search_target",
