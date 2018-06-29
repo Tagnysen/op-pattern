@@ -4,7 +4,7 @@
   "description": "Random Projections Python+spark implementation of algorithm for unsupervised discovery of time serie motifs",
   "family": "Data_Exploration",
   "entry_point": "pattern.random_proj::main_random_projections",
-  "input": [
+  "inputs": [
     {
       "name": "ts_list",
       "label": "TS list",
