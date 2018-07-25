@@ -1627,8 +1627,8 @@ def find_pattern(ref_pattern,
         raise IkatsException("Error occurred in find_pattern()")
 
 
-def find_pattern_by_fid(fid_pattern,
-                        search_target,
+def find_pattern_by_fid(search_target,
+                        fid_pattern,
                         rate_sliding,
                         rate_size_window,
                         distance,
