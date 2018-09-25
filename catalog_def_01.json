@@ -36,8 +36,8 @@
     {
       "name": "distance",
       "description": "The name of the metric used for scoring: 'DTW' 'FAST_DTW' or 'MANHATTAN'",
-      "type": "text",
-      "domain": "['FAST_DTW', 'DTW', 'MANHATTAN']",
+      "type": "list",
+      "domain": "['FAST_DTW','DTW','MANHATTAN']",
       "label": "Metric",
       "default_value": "FAST_DTW"
     },
@@ -51,9 +51,9 @@
     {
       "name": "normalize_mode",
       "description": "The demanded normalizing mode applied before comparing the pattern to the local target area. Available in current version: 'NO_NORM' disables the normalizing pre-processing, or 'MEAN_VARIANCE' sets mean to zero and scales std-deviation to 1 -when possible-",
-      "type": "text",
+      "type": "list",
       "label": "Normalize mode",
-      "domain": "['NO_NORM', 'MEAN_VARIANCE']",
+      "domain": "['NO_NORM','MEAN_VARIANCE']",
       "default_value": "MEAN_VARIANCE"
     }
   ],
