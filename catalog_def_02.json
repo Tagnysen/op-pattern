@@ -83,7 +83,7 @@
       "label": "Neighborhood method",
       "description": "Choose the method to find the motif neighborhood. GLOBAL is faster than ITERATIVE. The version BRUTE_FORCE is more precise, but slower than the other version WITH_COLLISIONS.",
       "type": "list",
-      "domain": "['ITERATIVE_BRUTE_FORCE','GLOBAL_BRUTE_FORCE', 'ITERATIVE_WITH_COLLISIONS','GLOBAL_WITH_COLLISIONS']",
+      "domain": "['ITERATIVE_BRUTE_FORCE','GLOBAL_BRUTE_FORCE','ITERATIVE_WITH_COLLISIONS','GLOBAL_WITH_COLLISIONS']",
       "default_value": "GLOBAL_WITH_COLLISIONS"
     },
     {

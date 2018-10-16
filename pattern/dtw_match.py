@@ -295,7 +295,7 @@ class ConfigPatternMatching(object):
     max_pattern_size = 5000
 
     # the  minimum value for the ratio: (size TS search) / (size TS pattern * rate_size_window )
-    min_ratio_search_pattern = 5.0
+    min_ratio_search_pattern = 1.0
 
     # Change this flag in order to call the _collect_for_debug
     #   on the RDD resulting from __mapped_extract
@@ -552,79 +552,6 @@ def __import_ts_result(result_type, ref_search_location, ref_pattern, data, fid)
     except Exception:
         msg = ERROR_IMPORT_MSG.format(result_type, ref_search_location, ref_pattern)
         raise IkatsException(msg)
-
-
-def __local_init_superwindows(ref_search_location,
-                              rate_size_window,
-                              nb_points_pattern):
-    """
-    Internal function: local computing of the superwindows intervals
-    :param ref_search_location: see argument doc from find_pattern
-    :type ref_search_location: str
-    :param rate_size_window: see argument doc from find_pattern
-    :type rate_size_window: float
-    :param nb_points_pattern: the number of points defined by the TS pattern
-    :type nb_points_pattern: int
-    :return: internal result is a tuple:
-             nb_points_search,
-             start_date_search,
-             end_date_search,
-             list of tuples (ref_search_location, superwindow_rank, [ superwindow_start_date, superwindow_end_date ] )
-    :rtype: tuple
-    """
-
-    dict_result = IkatsApi.md.read([ref_search_location])
-    start_date_search = float(dict_result[ref_search_location]['ikats_start_date'])
-    end_date_search = float(dict_result[ref_search_location]['ikats_end_date'])
-    nb_points_search = float(dict_result[ref_search_location]['qual_nb_points'])
-    # Checks that the search area is sufficiently larger than the pattern:
-    # => compare actual ratio with config_min_ratio_search_pattern
-    size_sliding_window = float(ceil(rate_size_window * nb_points_pattern))
-    actual_ratio = nb_points_search / size_sliding_window
-    if actual_ratio < ConfigPatternMatching.min_ratio_search_pattern:
-        msg = "Bad usage: ( nb_points_search / size_sliding_window ) < config_min_ratio_search_pattern: {} < {}"
-        raise IkatsException(msg.format(actual_ratio, ConfigPatternMatching.min_ratio_search_pattern))
-    # preferred size: depends on cluster configuration
-    # - see  ConfigPatternMatching.config_max_count_superwindows
-    #
-    # Note: preferred size is minimized with floor()
-    #       => maximize the superwindow_duration variable below
-    #   - selon le critere de limitation de nombre de taches: config_max_count_tasks
-    #   - selon le criere de limitation de memoire => config_max_points_in_superwindow -
-    #
-    swin_size_pref_by_nb_tasks = float(floor(nb_points_search / ConfigPatternMatching.preferred_count_tasks))
-
-    # Choose the size as a trade-off between task limitation / memory limitation
-    # => selects the minimum size ...
-    superwin_size_preferred = min(swin_size_pref_by_nb_tasks, ConfigPatternMatching.max_size_superwindow)
-
-    # actual size of superwindow:
-    # - at least : superwindow_size >= size_sliding_window
-    #              because a task operating on the superwindow may at least evaluate once the pattern
-    #
-    superwindow_size = max(superwin_size_preferred, size_sliding_window)
-
-    # Duration : the period of superwindow assuming that the TS point have uniform frequency.
-    # we add 1 to the duration to avoid side-effects
-    superwindow_duration = 1 + int(float(end_date_search - start_date_search) * superwindow_size / nb_points_search)
-
-    # iterate on the creation of each superwindow intervals ... until end_date_search
-    # is reached
-
-    start_dates = [start_date_search + i * superwindow_duration for i in range(ceil(actual_ratio))]
-    end_dates = start_dates[1:] + [end_date_search]
-
-    task_intervals = [(ref_search_location, rank, list(interval)) for rank, interval in
-                      enumerate(zip(start_dates, end_dates))]
-
-    LOGGER.debug("Superwindow size =%s", superwindow_size)
-    LOGGER.debug("Superwindow duration =%s", superwindow_duration)
-    LOGGER.debug("Target of search: nb_points=%s start_date=%s end_date=%s", nb_points_search,
-                 start_date_search,
-                 end_date_search)
-    LOGGER.debug("Task intervals on target of search:")
-
-    return nb_points_search, start_date_search, end_date_search, task_intervals
 
 
 def __mapped_extract(tsuid, rank, start_superwindow, end_superwindow,
@@ -1794,14 +1721,10 @@ def find_pattern_by_fid(search_target,
 
     workloads = {}
 
-    try:
-        for target_ref in ts_list:
-            workloads[target_ref] = ConfigPatternMatching.assert_ts_fidelity(ref_search_location=target_ref,
-                                                                             rate_size_window=rate_size_window,
-                                                                             nb_points_pattern=nb_points)
-    except Exception:
-        pass
-
+    for target_ref in ts_list:
+        workloads[target_ref] = ConfigPatternMatching.assert_ts_fidelity(ref_search_location=target_ref,
+                                                                         rate_size_window=rate_size_window,
+                                                                         nb_points_pattern=nb_points)
     try:
         all_results = defaultdict(list)
 
